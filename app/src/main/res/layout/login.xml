@@ -14,7 +14,8 @@
         android:textColor="#000000"
         android:layout_above="@+id/password"
         android:layout_alignLeft="@+id/login_sure"
-        android:layout_alignStart="@+id/login_sure" />
+        android:layout_alignStart="@+id/login_sure"
+        />
 
     <EditText
         android:layout_width="300dp"
@@ -39,5 +40,45 @@
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/login_username"
+        android:layout_alignTop="@+id/username"
+        android:layout_toLeftOf="@+id/username"
+        android:layout_toStartOf="@+id/username"
+        android:layout_marginTop="17dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/login_password"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/password"
+        android:layout_toStartOf="@+id/password" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注册"
+        android:id="@+id/login_register"
+        android:background="@drawable/line"
+        android:layout_below="@+id/login_sure"
+        android:layout_alignRight="@+id/login_sure"
+        android:layout_alignEnd="@+id/login_sure" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="？忘记密码"
+        android:textColor="#000000"
+        android:id="@+id/forget"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/login_sure"
+        android:layout_alignLeft="@+id/login_sure"
+        android:layout_alignStart="@+id/login_sure" />
 
 </RelativeLayout>
