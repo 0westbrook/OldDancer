@@ -4,17 +4,43 @@
     android:background="@drawable/login_background"
     android:layout_height="match_parent">
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/gradient_color"
+        android:id="@+id/frameLayout">
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:id="@+id/back"
+            android:src="@drawable/back"
+            android:background="@drawable/back_color"
+            android:layout_gravity="left|center_vertical" />
+    </FrameLayout>
+
+    <View
+        android:id="@+id/div_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#36D585"
+        android:layout_below="@+id/frameLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/username"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="164dp"
-        android:hint="  用户名"
+        android:hint="用户名"
+        android:paddingLeft="20dp"
         android:background="@drawable/line_white"
         android:textSize="20sp"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password" />
 
     <EditText
         android:layout_width="300dp"
@@ -22,13 +48,14 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/password"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignStart="@+id/username"
-        android:hint="  密码"
+        android:paddingLeft="20dp"
+        android:hint="密码"
         android:background="@drawable/line_white"
         android:textSize="20sp"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        android:layout_below="@+id/username"
+        android:layout_alignLeft="@+id/register_sure"
+        android:layout_alignStart="@+id/register_sure" />
 
     <Button
         android:layout_width="300dp"
@@ -36,9 +63,9 @@
         android:text="确定"
         android:id="@+id/register_sure"
         android:background="@drawable/register_click"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

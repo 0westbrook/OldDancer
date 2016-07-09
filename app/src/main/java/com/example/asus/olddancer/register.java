@@ -1,21 +1,19 @@
 package com.example.asus.olddancer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
 
 public class register extends Activity{
 
     private EditText register_username,register_password;
     private Button register;
+    private ImageButton register_back;
     private String username,password;
 
     @Override
@@ -29,28 +27,21 @@ public class register extends Activity{
     }
 
     private void initClick() {
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!checkEdit()){
-                    return;
-                }
-
                 username = register_username.getText().toString().trim();
                 password = register_password.getText().toString().trim();
-                final BmobUser user = new BmobUser();
-                user.setUsername(username);
-                user.setPassword(password);
-                user.signUp(new SaveListener<MyUser>() {
-                    @Override
-                    public void done(MyUser myUser, BmobException e) {
-                        if (e == null){
-                            Toast.makeText(register.this, "注册成功", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Log.e("TAG", "done: ",e );
-                        }
-                    }
-                });
+
+            }
+        });
+
+        register_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(register.this,login.class);
+                startActivity(intent);
             }
         });
     }
@@ -84,6 +75,7 @@ public class register extends Activity{
         register_username = (EditText) findViewById(R.id.username);
         register_password = (EditText) findViewById(R.id.password);
         register = (Button) findViewById(R.id.register_sure);
+        register_back = (ImageButton) findViewById(R.id.back);
     }
 
     private boolean checkEdit() {
