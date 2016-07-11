@@ -3,11 +3,15 @@ package com.example.asus.olddancer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.SaveListener;
 
 public class register extends Activity{
 
@@ -33,7 +37,25 @@ public class register extends Activity{
             public void onClick(View v) {
                 username = register_username.getText().toString().trim();
                 password = register_password.getText().toString().trim();
+                if (!checkEdit()) {
+                    final BmobUser user = new BmobUser();
+                    user.setUsername(username);
+                    user.setPassword(password);
+                    user.signUp(register.this, new SaveListener() {
+                        @Override
+                        public void onSuccess() {
+                            Toast.makeText(register.this, "注册成功", Toast.LENGTH_SHORT).show();
+                            Log.i("info", "添加数据成功，返回objectId为：" + user.getObjectId());
+                            finish();
+                        }
 
+                        @Override
+                        public void onFailure(int i, String s) {
+                            Toast.makeText(register.this, "网络连接失败,请检查网络连接!", Toast.LENGTH_SHORT).show();
+                            Log.i("info", "创建数据失败：" + s);
+                        }
+                    });
+                }
             }
         });
 

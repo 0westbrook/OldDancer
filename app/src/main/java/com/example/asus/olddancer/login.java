@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.SaveListener;
 
 public class login extends Activity {
 
@@ -48,7 +52,9 @@ public class login extends Activity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveInfo();
+                username = login_username.getText().toString().trim();
+                password = login_password.getText().toString().trim();
+
                 judgment();
             }
         });
@@ -63,11 +69,25 @@ public class login extends Activity {
     }
 
     private void judgment() {
+        BmobUser userInfo = new BmobUser();
+        userInfo.setUsername(username);
+        userInfo.setPassword(password);
+        userInfo.login(com.example.asus.olddancer.login.this, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(login.this,"登陆成功!",Toast.LENGTH_SHORT).show();
+                saveInfo();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Toast.makeText(login.this,"账号或密码错误,请重新登录!",Toast.LENGTH_SHORT).show();
+                Log.i("info",s+"");
+            }
+        });
     }
 
     private void saveInfo() {
-        username = login_username.getText().toString().trim();
-        password = login_password.getText().toString().trim();
         if (username.length() > 4 && password.length() > 6){
             if (isremember.isChecked()){
                 editor.putString("username",username);
@@ -78,8 +98,6 @@ public class login extends Activity {
                 editor.remove("password");
                 editor.apply();
             }
-        }else {
-            Toast.makeText(login.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
         }
     }
 
